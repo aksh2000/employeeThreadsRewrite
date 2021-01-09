@@ -16,9 +16,15 @@ public class ReadAndWriteServiceImplementation implements ReadAndWriteService {
 
         CsvToPostgresqlRead csvToPostgresqlRead = new CsvToPostgresqlRead();
 
+
         // read threads block
         csvToPostgresqlRead.start();
 
+        try {
+            csvToPostgresqlRead.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
 
 

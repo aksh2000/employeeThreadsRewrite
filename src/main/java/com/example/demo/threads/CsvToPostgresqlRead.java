@@ -1,5 +1,6 @@
 package com.example.demo.threads;
 
+import com.example.demo.collections.CollectionPostgresql;
 import com.example.demo.entity.EmployeePostgresql;
 import com.example.demo.fileHandler.CsvFileHandler;
 import com.example.demo.services.Implementations.PostgresqlServiceImplementation;
@@ -11,28 +12,16 @@ import java.util.List;
 
 public class CsvToPostgresqlRead extends Thread{
 
+    private CollectionPostgresql collectionPostgresql = CollectionPostgresql.getInstance();
 
 
-    @Autowired
-    PostgresqlServiceImplementation postgresqlServiceImplementation;
+
 
     @Override
     public void run() {
 
         CsvFileHandler handler = new CsvFileHandler();
-
-        List<EmployeePostgresql> employeePostgresqlList = handler.readFromFile();
-
-
-        for(int i = 0; i<employeePostgresqlList.size(); i++){
-
-            EmployeePostgresql e = employeePostgresqlList.get(i);
-            System.out.println(e.toString());
-
-            postgresqlServiceImplementation.save(e);
-        }
-
-
+        handler.readFromFile();
 
     }
 }

@@ -4,6 +4,7 @@ import com.example.demo.entity.EmployeePostgresql;
 import com.example.demo.resources.Constants;
 import com.example.demo.services.Implementations.PostgresqlServiceImplementation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -12,13 +13,16 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class CsvFileHandler implements Constants {
 
+    @Autowired
+    PostgresqlServiceImplementation postgresqlServiceImplementation;
 
-    List<EmployeePostgresql> employees = new ArrayList<>();
+//    List<EmployeePostgresql> employees = new ArrayList<>();
     // method to read from file
 
-    public synchronized List<EmployeePostgresql> readFromFile() {
+    public synchronized void readFromFile() {
 
         try {
             File file = new File("/Users/akshithvarma/Downloads/employee.csv");
@@ -34,8 +38,9 @@ public class CsvFileHandler implements Constants {
                 emp.setLastName(tempArr[1]);
                 emp.setDateOfBirth(tempArr[2]);
                 emp.setExperience(tempArr[3]);
-                employees.add(emp);
+//                employees.add(emp);
 
+                postgresqlServiceImplementation.save(emp);
 
                 iter++;
             }
@@ -44,8 +49,6 @@ public class CsvFileHandler implements Constants {
             ioe.printStackTrace();
         }
 
-
-        return employees;
 
     }
 
