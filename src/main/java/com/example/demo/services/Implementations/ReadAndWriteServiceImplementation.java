@@ -10,11 +10,11 @@ import org.springframework.stereotype.Service;
 public class ReadAndWriteServiceImplementation implements ReadAndWriteService {
 
 
+    @Autowired
+    CsvToPostgresqlRead csvToPostgresqlRead;
 
     @Override
     public void readAndWrite() {
-
-        CsvToPostgresqlRead csvToPostgresqlRead = new CsvToPostgresqlRead();
 
 
         // read threads block

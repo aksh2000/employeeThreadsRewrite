@@ -10,7 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
-@Table(name = "emp")
+@Table(name = "employees")
 public class EmployeePostgresql {
 
     @Id
@@ -22,7 +22,7 @@ public class EmployeePostgresql {
     @JsonFormat(pattern="dd/MM/yyyy")
     private Date dateOfBirth;
 
-    private double salary;
+
     private double experience;
 
     public Date getDateOfBirth() {
@@ -31,10 +31,6 @@ public class EmployeePostgresql {
 
     public double getExperience() {
         return experience;
-    }
-
-    public double getSalary() {
-        return salary;
     }
 
     public int getId() {
@@ -76,7 +72,5 @@ public class EmployeePostgresql {
         this.lastName = lastName;
     }
 
-    public void setSalary(double salary) {
-        this.salary = salary;
-    }
+
 }

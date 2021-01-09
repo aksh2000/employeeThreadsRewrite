@@ -10,7 +10,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-@Document(collection = "emp")
+@Document(collection = "emplpoyeeData")
 public class EmployeeMongodb {
 
     @Id

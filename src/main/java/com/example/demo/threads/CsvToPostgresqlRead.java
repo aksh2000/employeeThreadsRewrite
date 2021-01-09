@@ -10,17 +10,15 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 
+@Service
 public class CsvToPostgresqlRead extends Thread{
 
-    private CollectionPostgresql collectionPostgresql = CollectionPostgresql.getInstance();
-
-
-
+    @Autowired
+    CsvFileHandler handler;
 
     @Override
     public void run() {
 
-        CsvFileHandler handler = new CsvFileHandler();
         handler.readFromFile();
 
     }

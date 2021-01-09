@@ -11,6 +11,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Component
@@ -18,9 +19,6 @@ public class CsvFileHandler implements Constants {
 
     @Autowired
     PostgresqlServiceImplementation postgresqlServiceImplementation;
-
-//    List<EmployeePostgresql> employees = new ArrayList<>();
-    // method to read from file
 
     public synchronized void readFromFile() {
 
@@ -34,9 +32,11 @@ public class CsvFileHandler implements Constants {
             while ((line = br.readLine()) != null) {
                 EmployeePostgresql emp = new EmployeePostgresql();
                 tempArr = line.split(",");
+                emp.setId( iter );
                 emp.setFirstName(tempArr[0]);
                 emp.setLastName(tempArr[1]);
                 emp.setDateOfBirth(tempArr[2]);
+
                 emp.setExperience(tempArr[3]);
 //                employees.add(emp);
 
