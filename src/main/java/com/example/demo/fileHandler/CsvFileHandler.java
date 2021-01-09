@@ -6,10 +6,7 @@ import com.example.demo.services.Implementations.PostgresqlServiceImplementation
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -55,8 +52,57 @@ public class CsvFileHandler implements Constants {
 
 
 
+    public void writeToCsv() {
 
-    // method to write to csv file
+        // method to write to csv file
+
+        List<EmployeePostgresql> employeePostgresqls = postgresqlServiceImplementation.findAll();
+
+
+        for (EmployeePostgresql employee:employeePostgresqls
+             ) {
+
+            BufferedReader br=null;
+            try {
+                br = new BufferedReader(new FileReader(new File(CSV_OUPUT_FILE_ADDRESS)));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            StringBuffer sb1 = new StringBuffer();
+
+            while (true) {
+                String line = null;
+                try {
+                    line = br.readLine();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                if (line == null) break;
+                sb1.append(line).append("\n");
+            }
+            try (FileWriter writer = new FileWriter(CSV_OUPUT_FILE_ADDRESS)) {
+                StringBuilder sb = new StringBuilder();
+                sb.append(employee.getFirstName());
+                sb.append(',');
+                sb.append(employee.getLastName());
+                sb.append(',');
+                sb.append(employee.getDateOfBirth());
+                sb.append(',');
+                sb.append(employee.getExperience());
+                sb.append(",\n");
+                sb1.append(sb);
+                writer.write(sb1.toString());
+                writer.flush();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+    }
+
+
 }
 
 
