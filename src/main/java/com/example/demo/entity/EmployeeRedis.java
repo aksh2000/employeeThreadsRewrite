@@ -1,17 +1,14 @@
 package com.example.demo.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import org.springframework.data.mongodb.core.mapping.Document;
-
-import javax.persistence.Entity;
+import org.springframework.data.redis.core.RedisHash;
 import javax.persistence.Id;
-import javax.persistence.Table;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-@Document(collection = "employees")
-public class EmployeeMongodb {
+@RedisHash
+public class EmployeeRedis {
 
     @Id
     private int id;

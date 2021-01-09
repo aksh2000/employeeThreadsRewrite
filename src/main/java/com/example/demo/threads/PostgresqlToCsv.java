@@ -16,11 +16,8 @@ public class PostgresqlToCsv extends Thread {
     public void run() {
 
 
-
-        // service call to read all
-
         csvFileHandler.writeToCsv();
 
-        // file handler to write
+
     }
 }

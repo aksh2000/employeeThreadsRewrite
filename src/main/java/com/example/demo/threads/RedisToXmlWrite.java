@@ -1,18 +1,17 @@
 package com.example.demo.threads;
 
-import com.example.demo.fileHandler.JsonFileHandler;
+import com.example.demo.fileHandler.XmlFileHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class MongoToJson extends Thread {
-
+public class RedisToXmlWrite extends Thread {
 
     @Autowired
-    JsonFileHandler jsonFileHandler;
+    XmlFileHandler xmlFileHandler;
 
     @Override
     public void run() {
-        jsonFileHandler.writeToFile();
+        xmlFileHandler.write();
     }
 }
