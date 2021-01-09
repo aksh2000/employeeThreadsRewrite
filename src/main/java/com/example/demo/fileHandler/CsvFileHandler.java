@@ -20,7 +20,7 @@ public class CsvFileHandler implements Constants {
     public synchronized void readFromFile() {
 
         try {
-            File file = new File("/Users/akshithvarma/Downloads/employee.csv");
+            File file = new File( XML_INPUT_FILE_ADDRESS );
             FileReader fr = new FileReader(file);
             BufferedReader br = new BufferedReader(fr);
             String line = "";
@@ -28,14 +28,14 @@ public class CsvFileHandler implements Constants {
             int iter = 0;
             while ((line = br.readLine()) != null) {
                 EmployeePostgresql emp = new EmployeePostgresql();
+
                 tempArr = line.split(",");
+
                 emp.setId( iter );
                 emp.setFirstName(tempArr[0]);
                 emp.setLastName(tempArr[1]);
                 emp.setDateOfBirth(tempArr[2]);
-
                 emp.setExperience(tempArr[3]);
-//                employees.add(emp);
 
                 postgresqlServiceImplementation.save(emp);
 
@@ -53,8 +53,6 @@ public class CsvFileHandler implements Constants {
 
 
     public void writeToCsv() {
-
-        // method to write to csv file
 
         List<EmployeePostgresql> employeePostgresqls = postgresqlServiceImplementation.findAll();
 
@@ -104,15 +102,3 @@ public class CsvFileHandler implements Constants {
 
 
 }
-
-
-//    public static void main(String[] args) {
-//        CsvFileHandler csv=new CsvFileHandler();
-//        List<EmployeePostgresql> employeePostgresqls = csv.readFromFile();
-//
-//        for (EmployeePostgresql e: employeePostgresqls
-//             ) {
-//            System.out.println(e.toString());
-//        }
-//
-//    }

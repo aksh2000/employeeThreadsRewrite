@@ -77,7 +77,6 @@ public class XmlFileHandler implements Constants {
 
         try {
             doc = db.newDocument();
-// root element creation in the doc
             Element rootElement = doc.createElement( "Employees" );
             doc.appendChild( rootElement );
 
@@ -85,13 +84,6 @@ public class XmlFileHandler implements Constants {
 
             int i = 1;
             for (EmployeeRedis emp : employeeRedisList) {
-
-                EmployeeRedis employeeRedis = new EmployeeRedis();
-                employeeRedis.setId(i++);
-                employeeRedis.setFirstName( emp.getFirstName() );
-                employeeRedis.setLastName( emp.getLastName() );
-                employeeRedis.setDateOfBirth("22/02/1994");
-                employeeRedis.setExperience( Double.toString(emp.getExperience()));
 
                 Element employee = doc.createElement( "Employee" );
                 rootElement.appendChild( employee );

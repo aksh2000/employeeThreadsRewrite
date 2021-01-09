@@ -1,6 +1,5 @@
 package com.example.demo.threads;
 
-import com.example.demo.collections.CollectionPostgresql;
 import com.example.demo.entity.EmployeePostgresql;
 import com.example.demo.fileHandler.CsvFileHandler;
 import com.example.demo.services.Implementations.PostgresqlServiceImplementation;
